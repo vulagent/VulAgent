@@ -1,0 +1,8 @@
+SN,Codebase,Scan Result,Directed fuzzing,,,,Bigsleep,,,,,,VulAgent
+,,,SelectFuzz,,PDGF,,GPT-4.1-mini,,Code rabbit,,Q development,,
+,,,#PoC,Recall,#PoC,Recall,#PoC,Recall,#PoC,Recall,#PoC,Recall,#PoC
+1,SQLite,4073,0,0%,0,0%,10,17.24%,20,34.48%,27,46.55%,58
+2,Libxml2,2145,0,0%,0,0%,9,69.23%,9,69.23%,7,53.85%,13
+3,Libplist,660,0,0%,0,0%,1,11.11%,1,11.11%,2,22.22%,9
+4,V8,1003,0,0%,0,0%,0,0%,0,0%,0,0%,1
+Sum,,7881,0,0%,0,0%,20,24.69%,30,37.04%,36,44.44%,81

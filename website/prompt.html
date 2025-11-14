@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+ <!-- Global Navigation Bar -->
+<nav style="
+    background: #f8f9fa;
+    padding: 12px 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+    font-family: 'Open Sans', Arial, sans-serif;
+">
+    <div style="
+        max-width: 1000px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 0 20px;
+    ">
+<a href="/" style="padding: 8px 16px; text-decoration: none; color: #1a73e8; background: #e8f0fe; border-radius: 6px; font-weight: 600; font-size: 0.95em;"> Home</a>
+<a href="/introduction" style="padding: 8px 16px; text-decoration: none; color: #1a73e8; background: #e8f0fe; border-radius: 6px; font-weight: 600; font-size: 0.95em;"> VulAgent Introduction</a>
+<a href="/example" style="padding: 8px 16px; text-decoration: none; color: #1a73e8; background: #e8f0fe; border-radius: 6px; font-weight: 600; font-size: 0.95em;"> Motivating Example</a>
+<a href="/prompt" style="padding: 8px 16px; text-decoration: none; color: #1a73e8; background: #e8f5e9; border-radius: 6px; font-weight: 600; font-size: 0.95em;"> Prompts</a>
+<a href="https://github.com/vulagent/VulAgent" target="_blank" rel="noopener" style="padding: 8px 16px; text-decoration: none; color: #1a73e8; background: #e8f0fe; border-radius: 6px; font-weight: 600; font-size: 0.95em;"> GitHub</a>
+<a href="/bugs" style="padding: 8px 16px; text-decoration: none; color: #1a73e8; background: #e8f0fe; border-radius: 6px; font-weight: 600; font-size: 0.95em;"> Detected Vulnerabilities</a>
+   </div>
+</nav>
+    <title>Prompts of VulAgent</title>
+    <style>
+        /* ChatGPT-like minimal style */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .describe {
+            font-size: 1rem;
+            color: #0b1226;
+            margin-bottom: 24px;
+            line-height: 1.6;
+            text-indent: 2em;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+            margin-bottom: 16px;
+            border: 1px solid rgba(15, 23, 42, 0.04);
+        }
+
+        .card h2 {
+            margin: 0 0 8px 0;
+            font-size: 1rem;
+            color: #0b1226;
+        }
+
+        .meta {
+            font-size: 0.86rem;
+            color: #6b7280;
+            margin-bottom: 12px;
+        }
+
+        .prompt-text {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #0b1226;
+            white-space: pre-wrap;
+            border: 1px solid rgba(11, 18, 38, 0.04);
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+            gap: 12px;
+        }
+
+        .copy-btn {
+            background: #0b1226;
+            color: #fff;
+            border: 0;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .copy-btn.copied {
+            background: #0b1226;
+            opacity: 0.8;
+        }
+
+        @media (max-width:720px) {
+            body {
+                padding: 20px;
+            }
+
+            .container {
+                padding: 0 6px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>📝 Prompts of VulAgent</h1>
+        <div class="describe">
+            In this section, we describe the specific prompts used in our workflow, including those employed in the pruning,
+        slicing, and LLM-based reasoning stages. Although the pruning and slicing components do not inherently depend on
+        large language models and can be implemented through alternative techniques, we present here an
+        engineering-oriented implementation that leverages LLMs for clarity and completeness.
+        </div>
+
+        <section class="card">
+            <h2>Prompt for Pruning</h2>
+            <div class="prompt-text">Role:
+You are an expert in C/C++ integer overflow analysis.
+
+Task:
+Given the vulnerability context, determine whether the analyzed path is provably free from signed integer overflows for the given expression.
+
+Steps:
+1. Identify the target expression and all relevant variables; infer each variable’s semantic role from naming and local/project context.
+2. Analyze surrounding conditions, loops, and control flow to determine how these variables evolve and to derive feasible value ranges, incorporating global/configuration bounds where applicable.
+3. Check whether any variable is compile-time constant (via macros/constant propagation) and, using the derived ranges, decide if a signed integer overflow is possible; if provably safe, mark the path as Pruned, otherwise Retained.
+
+Output:
+Provide a concise reasoning summary and clearly state whether the path contains a potential signed
+integer overflow.</div>
+        </section>
+
+        <section class="card">
+            <h2>Prompt for Slicing</h2>
+            <div class="prompt-text">Role:
+You are an expert in C/C++ integer overflow detection and program slicing.
+
+Task:
+Given the function body and a description of the potential integer overflow, extract only the statements
+that are semantically relevant to the variables and expressions contributing to the overflow, while
+preserving the essential execution semantics.
+
+Steps:
+1. Identify the variables that participate in overflow-related expressions and determine their data dependencies using dataflow reasoning.
+2. Retain only the statements that define, modify, or influence these variables, and remove unrelated code segments.
+3. For the removed parts, insert concise natural-language summaries to maintain semantic completeness and readability.
+
+Expected Output:
+  - A brief explanation of the slicing decisions and reasoning process.
+  - The reduced and semantically coherent function body preserving overflow-relevant logic.
+  - Short natural-language comments summarizing removed sections.</div>
+        </section>
+
+        <section class="card">
+            <h2>Prompt for LLM-based Reasoning</h2>
+            <div class="prompt-text">Role:
+You are an expert in C/C++ program analysis and semantic reasoning for vulnerability detection.
+
+Task:
+Given the current function and its surrounding program context, determine whether the function represents a user-reachable entry point and whether sufficient contextual information exists to construct a testcase that can reach the potentially vulnerable line.
+
+Steps:
+1. Functionality Recognition: Interpret the semantics of the provided path to identify the enclosing function, infer its intended behavior, and analyze comments or descriptive identifiers that reveal its role in the program.
+2. Key Variable Identification: Examine expressions related to integer operations within the path, identify the variables involved, and reason about their roles and value meanings in overflow-related computations.
+3. Reflection and Decision-Making: Evaluate whether the current contextual knowledge is sufficient to construct a reachable testcase. If critical information is missing (for example, the input source of a variable is unknown), indicate that additional context should be retrieved. Otherwise, conclude whether a concrete testcase can be synthesized to exercise the target line.
+
+Output:
+A concise reasoning summary describing the inferred function semantics, the identified key variables, and a final judgment on whether the function is user-reachable and ready for testcase synthesis.</div>
+        </section>
+    </div>
+
+</body>
+
+</html>

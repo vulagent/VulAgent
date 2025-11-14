@@ -1,0 +1,6 @@
+SN,Codebase,LLM self-organization "code context" ordering,,,,Random "code context" ordering,,,,Vulagent,,,
+,,#Top1,#Top3,Token(K),Time(s),#Top1,#Top3,Token(K),Time(s),#Top1,#Top3,Token(K),Time(s)
+1,SQLite,48,58,1142,1342,43,53,1069,1122,58,58,589,760
+2,Libxml2,13,13,329,1134,11,13,661,873,11,13,431,836
+3,Libplist,5,9,944,1030,7,9,700,1066,7,9,357,801
+4,V8,1,1,831,1393,1,1,685,1279,1,1,289,1055

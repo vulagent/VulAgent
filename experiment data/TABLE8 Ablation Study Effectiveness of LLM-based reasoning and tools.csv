@@ -1,0 +1,6 @@
+SN,Codebase,Obsolete "LLM-based reasoning",,,Obsolete "Code Runner",,,Obsolete "Checker",,,Vulagent,,
+,,#PoC,Token(K),Time(s),#PoC,Token(K),Time(s),#PoC,Token(K),Time(s),#PoC,Token(K),Time(s)
+1,SQLite,34,800,762,37,1629,1750,34,971,782,58,589,760
+2,Libxml2,7,704,1191,0,1914,2369,9,426,580,13,431,836
+3,Libplist,0,1018,1542,0,3346,5823,2,215,706,9,357,801
+4,V8,0,364,952,0,955,1595,0,198,654,1,289,1055

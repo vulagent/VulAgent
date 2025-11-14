@@ -1,0 +1,10 @@
+ID,Arity,Operator,Example,When does integer overflow occur?
+1,Unary,-,-a,a is the minimum value
+2,,++,"a++,++a",a is the maximum value
+3,,--,"a--,--a",a is the minimum value
+4,Binary,+,a+b,The sum of a and b exceeds int
+5,,+=,a+=b,
+6,,-,a-b,The difference of a and b exceeds int
+7,,-=,a-=b,
+8,,*,a*b,The product of a and b exceeds int
+9,,*=,a*=b,

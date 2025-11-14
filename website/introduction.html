@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>VulAgent Introduction</title>
+    <style>
+        /* Cleaned and focused styles. .container preserved and lightly tweaked. */
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Open Sans', 'Helvetica Neue', Arial, sans-serif;background:linear-gradient(180deg,#f7f9fc, #f6f7fb);color:#233;line-height:1.6;padding:28px}
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        h1{font-size:1.6rem;color:#0b1226;margin-bottom:8px}
+        h2{font-size:1.25rem;color:#0b1226;margin:6px 0 16px}
+
+        /* Intro text */
+        .introduction{font-size:1rem;color:#334155;background:#fbfdff;padding:18px;border-radius:8px;border:1px solid rgba(11,20,40,0.04)}
+
+        /* Inline code */
+        code{background:#f3f7ff;padding:2px 8px;border-radius:6px;border:1px solid rgba(11,20,60,0.04);font-family:monospace}
+
+        @media (max-width:720px){body{padding:16px}.container{padding:20px}}
+    </style>
+</head>
+
+<body>
+    <!-- Global Navigation Bar -->
+    <nav style="
+    background: #f8f9fa;
+    padding: 12px 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+    font-family: 'Open Sans', Arial, sans-serif;
+">
+        <div style="
+        max-width: 1000px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 0 20px;
+    ">
+<a href="/" style="padding: 8px 16px; text-decoration: none; color: #1a73e8; background: #e8f0fe; border-radius: 6px; font-weight: 600; font-size: 0.95em;"> Home</a>
+<a href="/introduction" style="padding: 8px 16px; text-decoration: none; color: #1a73e8; background: #e8f5e9; border-radius: 6px; font-weight: 600; font-size: 0.95em;"> VulAgent Introduction</a>
+<a href="/example" style="padding: 8px 16px; text-decoration: none; color: #1a73e8; background: #e8f0fe; border-radius: 6px; font-weight: 600; font-size: 0.95em;"> Motivating Example</a>
+<a href="/prompt" style="padding: 8px 16px; text-decoration: none; color: #1a73e8; background: #e8f0fe; border-radius: 6px; font-weight: 600; font-size: 0.95em;"> Prompts</a>
+<a href="https://github.com/vulagent/VulAgent" target="_blank" rel="noopener" style="padding: 8px 16px; text-decoration: none; color: #1a73e8; background: #e8f0fe; border-radius: 6px; font-weight: 600; font-size: 0.95em;"> GitHub</a>
+<a href="/bugs" style="padding: 8px 16px; text-decoration: none; color: #1a73e8; background: #e8f0fe; border-radius: 6px; font-weight: 600; font-size: 0.95em;"> Detected Vulnerabilities</a>
+       </div>
+    </nav>
+    <div class="container">
+        <h2>What is VulAgent?</h2>
+        <div>
+            VulAgent is a vulnerability-mining tool powered by generative artificial intelligence (AI) that specializes in discovering integer-overflow bugs. During mining, it automatically creates proof-of-concept (PoC) inputs to trigger the flaws and, upon successful activation, produces detailed vulnerability reports. VulAgent’s capabilities are continuously expanded, with support for additional vulnerability classes planned for future releases.
+        </div>
+        <h2>Get started with VulAgent</h2>
+        <div>
+            To quickly start using VulAgent, visit <a href="https://github.com/vulagent/VulAgent" target="_blank" rel="noopener">GitHub</a> for the source code and instructions.
+        </div>
+    </div>
+
+</body>
+
+</html>

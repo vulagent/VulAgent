@@ -1,0 +1,6 @@
+SN,Codebase,LLM self-organization maintaining,,,Obsolete "Prune",,,Obsolete "Slice",,,VulAgent,,
+,,#PoC,Token(K),Time(s),#PoC,Token(K),Time(s),#PoC,Token(K),Time(s),#PoC,Token(K),Time(s)
+1,SQLite,10,1176,654,58,3236,2613,58,522,756,58,462,524
+2,Libxml2,9,178,147,13,732,1552,13,139,218,13,62,104
+3,Libplist,1,1336,526,9,2792,4218,9,376,407,9,171,222
+4,V8,0,357,408,1,1709,3700,1,78,152,1,37,136

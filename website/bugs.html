@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>VulAgent Introduction</title>
+    <style>
+        /* Minimal, focused styles for this page */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+            color: #222;
+            padding: 20px;
+            background: #fafafa
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .introduction {
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            color: #111;
+            margin-bottom: 12px
+        }
+
+        /* Table container */
+        .table-container {
+            margin: 20px 0;
+            overflow-x: auto
+        }
+
+        /* Simplified table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.96rem
+        }
+
+        /* Projects table: keep a smaller width and align left */
+        .projects-table {
+            width: min(136.65px, 100%);
+            margin: 0 0 12px 0;
+        }
+        .projects-table td {
+            padding: 8px 12px;
+            color: #333;
+            white-space: nowrap;
+        }
+
+        .data-table thead th {
+            background: #f3f4f6;
+            color: #111;
+            padding: 10px;
+            border-bottom: 1px solid #e6e9ef;
+            text-align: left;
+            font-weight: 600
+        }
+
+        .data-table tbody td {
+            padding: 10px;
+            border-bottom: 1px solid #eef0f3;
+            color: #333
+        }
+
+        .data-table tbody tr:hover {
+            background: #fbfcfd
+        }
+
+        .data-table a {
+            color: #0b63d6;
+            text-decoration: none
+        }
+
+        .data-table a:hover {
+            text-decoration: underline
+        }
+
+        @media (max-width:768px) {
+            body {
+                padding: 12px
+            }
+
+            .container {
+                padding: 16px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Global Navigation Bar -->
+    <nav style="
+    background: #f8f9fa;
+    padding: 12px 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+    font-family: 'Open Sans', Arial, sans-serif;
+">
+        <div style="
+        max-width: 1000px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 0 20px;
+    ">
+<a href="/" style="padding: 8px 16px; text-decoration: none; color: #1a73e8; background: #e8f0fe; border-radius: 6px; font-weight: 600; font-size: 0.95em;"> Home</a>
+<a href="/introduction" style="padding: 8px 16px; text-decoration: none; color: #1a73e8; background: #e8f0fe; border-radius: 6px; font-weight: 600; font-size: 0.95em;"> VulAgent Introduction</a>
+<a href="/example" style="padding: 8px 16px; text-decoration: none; color: #1a73e8; background: #e8f0fe; border-radius: 6px; font-weight: 600; font-size: 0.95em;"> Motivating Example</a>
+<a href="/prompt" style="padding: 8px 16px; text-decoration: none; color: #1a73e8; background: #e8f0fe; border-radius: 6px; font-weight: 600; font-size: 0.95em;"> Prompts</a>
+<a href="https://github.com/vulagent/VulAgent" target="_blank" rel="noopener" style="padding: 8px 16px; text-decoration: none; color: #1a73e8; background: #e8f0fe; border-radius: 6px; font-weight: 600; font-size: 0.95em;"> GitHub</a>
+<a href="/bugs" style="padding: 8px 16px; text-decoration: none; color: #1a73e8; background: #e8f5e9; border-radius: 6px; font-weight: 600; font-size: 0.95em;"> Detected Vulnerabilities</a>
+
+        </div>
+    </nav>
+    <div class="container">
+        <div class="introduction">
+            VulAgent has currently mined four open-source libraries and identified a
+            total of 81 vulnerabilities. The table below provides the repair links.
+        </div>
+        <!-- Projects Section -->
+        <h2>📁 Projects</h2>
+        <div class="table-container">
+            <table class="data-table projects-table" aria-label="Projects">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Project</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="projectListBody">
+                    <!-- Projects rendered in a single row -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Vulnerabilities Section -->
+        <h2>🐞 Vulnerabilities List</h2>
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Project</th>
+                        <th>Repair Link</th>
+                    </tr>
+                </thead>
+                <tbody id="projectTableBody">
+                    <!-- Data will be rendered here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+
+
+        const project = [
+            {no: 1, project: 'SQLite', link: 'https://sqlite.org'},
+            {no: 2, project: 'Libxml2', link: 'https://gitlab.gnome.org/GNOME/libxml2'},
+            {no: 3, project: 'Libplist', link: 'https://github.com/libimobiledevice/libplist'},
+            {no: 4, project: 'V8', link: 'https://v8.dev'}
+        ]
+
+        // Sample data - replace this with your actual data
+        const projectData = [
+            { no: 1, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/f4fc2ee20311a0a5141726c71d318ab52001c974' },
+            { no: 2, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/56d2fd008b108109f489339f5fd55212bb50afd4' },
+            { no: 3, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/56d2fd008b108109f489339f5fd55212bb50afd4' },
+            { no: 4, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/136afcfcc1d12f7b9f3908d48a7c4f9ffedf727b' },
+            { no: 5, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/9081b8972090289b0cb6fc98c7ecff5f7467d5a7' },
+            { no: 6, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/92f91ca37d13bcd5b8c5e9f3d02f3bd1b52695dc' },
+            { no: 7, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/56d831e0648ffcea031da404d1112eafa4e3fed6' },
+            { no: 8, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/96455af9503094c862c1bf781d3c8d63883b707e' },
+            { no: 9, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/96455af9503094c862c1bf781d3c8d63883b707e' },
+            { no: 10, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/96455af9503094c862c1bf781d3c8d63883b707e' },
+            { no: 11, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/0f5a3f16f30dba4945339ec85a70da641d7977c8' },
+            { no: 12, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/33125645409cd909d4cdd19892fa9fa8e4d36dda' },
+            { no: 13, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/b927708437e757485e19571ff5e476543d123e9e' },
+            { no: 14, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/feeacfb8977e939c36891c016b9fc94e9703d944' },
+            { no: 15, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/9b6bc61dbd9744ca01e1d25e31745858dbf4feb7' },
+            { no: 16, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/9b6bc61dbd9744ca01e1d25e31745858dbf4feb7' },
+            { no: 17, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/2c88a2ffb5e6a88589de91e39d75b20ce963a94a' },
+            { no: 18, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/4d488bd341dd23990db19554ab96b7df28ffc1bc' },
+            { no: 19, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/31efe5a0f2f80a263457a1fc6524783c0c45769b' },
+            { no: 20, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/6553a5d6a69bcfd261d1055dfd86f37b7b851e27' },
+            { no: 21, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/6553a5d6a69bcfd261d1055dfd86f37b7b851e27' },
+            { no: 22, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/6553a5d6a69bcfd261d1055dfd86f37b7b851e27' },
+            { no: 23, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/80d74f09347372105731952acd47d79fd072a5d1' },
+            { no: 24, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/80d74f09347372105731952acd47d79fd072a5d1' },
+            { no: 25, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/c090488133359762c97956254d14f487cde0c9c5' },
+            { no: 26, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/18af48759740575bb6270e0a239853797067b2a0' },
+            { no: 27, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/54f296389c4b213d4c2af3cb34e3181354956b9d' },
+            { no: 28, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/54f296389c4b213d4c2af3cb34e3181354956b9d' },
+            { no: 29, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/54f296389c4b213d4c2af3cb34e3181354956b9d' },
+            { no: 30, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/54f296389c4b213d4c2af3cb34e3181354956b9d' },
+            { no: 31, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/7e38287da43ea3b661da3d8c1f431aa907d648c9' },
+            { no: 32, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/5b15123fba29709ff32a0aaa13f223223989d369' },
+            { no: 33, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/9b6bc61dbd9744ca01e1d25e31745858dbf4feb7' },
+            { no: 34, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/9b6bc61dbd9744ca01e1d25e31745858dbf4feb7' },
+            { no: 35, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/e15ef5b756d6195c5dc06294c5a01aee60932205' },
+            { no: 36, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/0f5a3f16f30dba4945339ec85a70da641d7977c8' },
+            { no: 37, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/264bcad69a449ecc46fd47859162d0536b1214a0' },
+            { no: 38, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/59e1ab5576090783a2276d0be98c0c8a1ef03247' },
+            { no: 39, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/ee4676b3f77b6e92aab7c9fde87304030329533f' },
+            { no: 40, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/264bcad69a449ecc46fd47859162d0536b1214a0' },
+            { no: 41, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/abe709be8d7b7d30999b4477e1cbdb104f33206c' },
+            { no: 42, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/34c1e04cbf1b5d7af6bc11e0b078d1853b996bd0' },
+            { no: 43, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/21c57abc535121fc5d02a1ebbf815e8fc45f4295' },
+            { no: 44, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/efe8ae567c4c78269a6bf32913e4b73554dae181' },
+            { no: 45, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/95c188d55740c72d2525d2eb9715e56e3db8e862' },
+            { no: 46, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/9c0770537f5227078ca1cafa53b877db5e106b85' },
+            { no: 47, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/acdda1075da9dc6c53a9191b4c03711027a66030' },
+            { no: 48, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/acdda1075da9dc6c53a9191b4c03711027a66030' },
+            { no: 49, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/acdda1075da9dc6c53a9191b4c03711027a66030' },
+            { no: 50, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/acdda1075da9dc6c53a9191b4c03711027a66030' },
+            { no: 51, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/acdda1075da9dc6c53a9191b4c03711027a66030' },
+            { no: 52, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/9c0770537f5227078ca1cafa53b877db5e106b85' },
+            { no: 53, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/9c0770537f5227078ca1cafa53b877db5e106b85' },
+            { no: 54, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/9c0770537f5227078ca1cafa53b877db5e106b85' },
+            { no: 55, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/9c0770537f5227078ca1cafa53b877db5e106b85' },
+            { no: 56, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/9c0770537f5227078ca1cafa53b877db5e106b85' },
+            { no: 57, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/ffbfc27fab6b27123e83922413cd7102bbc77917' },
+            { no: 58, project: 'SQLite', link: 'https://github.com/SQLite/SQLite/commit/cb36dc3f3e4f5c72aea074e98b1bd87381bf80fa' },
+            { no: 59, project: 'Libxml2', link: 'https://gitlab.gnome.org/GNOME/Libxml2/-/issues/997' },
+            { no: 60, project: 'Libxml2', link: 'https://gitlab.gnome.org/GNOME/Libxml2/-/issues/997' },
+            { no: 61, project: 'Libxml2', link: 'https://gitlab.gnome.org/GNOME/Libxml2/-/issues/1005' },
+            { no: 62, project: 'Libxml2', link: 'https://gitlab.gnome.org/GNOME/Libxml2/-/issues/1005' },
+            { no: 63, project: 'Libxml2', link: 'https://gitlab.gnome.org/GNOME/Libxml2/-/issues/1005' },
+            { no: 64, project: 'Libxml2', link: 'https://gitlab.gnome.org/GNOME/Libxml2/-/issues/1006' },
+            { no: 65, project: 'Libxml2', link: 'https://gitlab.gnome.org/GNOME/Libxml2/-/issues/1006' },
+            { no: 66, project: 'Libxml2', link: 'https://gitlab.gnome.org/GNOME/Libxml2/-/issues/1007' },
+            { no: 67, project: 'Libxml2', link: 'https://gitlab.gnome.org/GNOME/Libxml2/-/issues/1007' },
+            { no: 68, project: 'Libxml2', link: 'https://gitlab.gnome.org/GNOME/Libxml2/-/issues/1008' },
+            { no: 69, project: 'Libxml2', link: 'https://gitlab.gnome.org/GNOME/Libxml2/-/issues/1008' },
+            { no: 70, project: 'Libxml2', link: 'https://gitlab.gnome.org/GNOME/Libxml2/-/issues/1008' },
+            { no: 71, project: 'Libxml2', link: 'https://gitlab.gnome.org/GNOME/Libxml2/-/issues/1002' },
+            { no: 72, project: 'Libplist', link: 'https://github.com/libimobiledevice/Libplist/issues/279' },
+            { no: 73, project: 'Libplist', link: 'https://github.com/libimobiledevice/Libplist/issues/279' },
+            { no: 74, project: 'Libplist', link: 'https://github.com/libimobiledevice/Libplist/issues/279' },
+            { no: 75, project: 'Libplist', link: 'https://github.com/libimobiledevice/Libplist/issues/280' },
+            { no: 76, project: 'Libplist', link: 'https://github.com/libimobiledevice/Libplist/issues/278' },
+            { no: 77, project: 'Libplist', link: 'https://github.com/libimobiledevice/Libplist/issues/278' },
+            { no: 78, project: 'Libplist', link: 'https://github.com/libimobiledevice/Libplist/issues/281' },
+            { no: 79, project: 'Libplist', link: 'https://github.com/libimobiledevice/Libplist/issues/282' },
+            { no: 80, project: 'Libplist', link: 'https://github.com/libimobiledevice/Libplist/issues/282' },
+            { no: 81, project: 'V8', link: 'https://github.com/V8/V8/commit/490abeb40936273f345d7fbbafa5f8c0ca007623' }
+        ];
+
+
+
+        // Function to render vulnerabilities table
+        function renderTable(data) {
+            const tbody = document.getElementById('projectTableBody');
+            tbody.innerHTML = ''; // Clear existing content
+
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.no}</td>
+                    <td>${item.project}</td>
+                    <td><a href="${item.link}" target="_blank" rel="noopener">${item.link}</a></td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Function to render projects list
+        function renderProjects(list) {
+            const tbody = document.getElementById('projectListBody');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+            list.forEach((p, i) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${i + 1}</td>
+                    <td>${p.project}</td>
+                    <td><a href="${p.link}" target="_blank" rel="noopener">${p.link}</a></td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Render tables on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            renderProjects(project);
+            renderTable(projectData);
+        });
+    </script>
+</body>
+
+</html>
